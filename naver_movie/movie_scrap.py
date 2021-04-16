@@ -28,13 +28,10 @@ def genres(soup):
 
 
 def story(soup):
-    try:
-        story_soup = BeautifulSoup(str(soup.select("div[class=story_area]")[
-                                   0]).replace('<br>', '\n').replace('\xa0', '\n'), 'lxml')
-        sentences = story_soup.text.split('\n')
-        sentences = [text_normalize(sentence)
-                     for sentence in sentences if sentence]
-        sentences = [sentence for sentence in sentences if sentence != '줄거리']
-        return '\n'.join(sentences)
-    except:
-        return 'error occurred while fetching data'
+    story_soup = BeautifulSoup(str(soup.select("div[class=story_area]")[
+        0]).replace('<br>', '\n').replace('\xa0', '\n'), 'lxml')
+    sentences = story_soup.text.split('\n')
+    sentences = [text_normalize(sentence)
+                 for sentence in sentences if sentence]
+    sentences = [sentence for sentence in sentences if sentence != '줄거리']
+    return '\n'.join(sentences)

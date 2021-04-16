@@ -5,14 +5,14 @@ from .util import get_soup
 review_url_form = 'https://movie.naver.com/movie/bi/mi/pointWriteFormList.nhn?code={}&order=newest&page={}&onlySpoilerPointYn={}'
 
 
-def calc_max_page(url):
+def calc_max_page(url, end_page):
     max_page = min(end_page, get_max_page(url))
     return max_page if max_page > 0 else False
 
 
 def get_review_data(movie_id, start_page=1, end_page=-1, spoiler='Y'):
     url = review_url_form.format(movie_id, start_page, spoiler)
-    max_page = calc_max_page(url)
+    max_page = calc_max_page(url, end_page)
 
     if max_page == False:
         return "Failed: please check end_page"

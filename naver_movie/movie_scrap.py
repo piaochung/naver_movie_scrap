@@ -37,4 +37,4 @@ def story(soup):
         sentences = [sentence for sentence in sentences if sentence != '줄거리']
         return '\n'.join(sentences)
     except:
-        return ''
+        return 'error occurred while fetching data'

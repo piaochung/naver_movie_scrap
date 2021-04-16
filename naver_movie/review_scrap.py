@@ -11,7 +11,7 @@ def calc_max_page(url):
 
 
 def get_review_data(movie_id, start_page=1, end_page=-1, spoiler='Y'):
-    url = review_url_form.format(movie_id, page, spoiler)
+    url = review_url_form.format(movie_id, start_page, spoiler)
     max_page = calc_max_page(url)
 
     if max_page == False:

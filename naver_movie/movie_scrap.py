@@ -11,7 +11,7 @@ def get_movie_data(movie_id):
     infomation = {
         'title': get_title(soup),
         'genres': get_genres(soup),
-        'story': get_story(soup), v
+        'story': get_story(soup)
     }
     return infomation
 

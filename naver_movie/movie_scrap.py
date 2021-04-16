@@ -9,26 +9,26 @@ def get_movie_data(movie_id):
     url = basic_url_form.format(movie_id)
     soup = get_soup(url)
     infomation = {
-        'title': title(soup),
-        'genres': genres(soup),
-        'story': story(soup),
+        'title': get_title(soup),
+        'genres': get_genres(soup),
+        'story': get_story(soup), v
     }
     return infomation
 
 
-def title(soup):
+def get_title(soup):
     a = soup.select('div[class=mv_info] h3[class=h_movie] a')
     if not a:
         return ''
     return text_normalize(a[0].text)
 
 
-def genres(soup):
+def get_genres(soup):
     genres = soup.select('a[href^="/movie/sdb/browsing/bmovie.nhn?genre="]')
     return list({genre.text for genre in genres})
 
 
-def story(soup):
+def get_story(soup):
     try:
         story_soup = BeautifulSoup(str(soup.select("div[class=story_area]")[
                                    0]).replace('<br>', '\n').replace('\xa0', '\n'), 'lxml')

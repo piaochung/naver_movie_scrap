@@ -2,7 +2,7 @@ import math
 from tqdm import trange
 from .util import get_soup
 
-review_url_form = 'https://movie.naver.com/movie/bi/mi/pointWriteFormList.nhn?code={}&order=newest&page={}&onlySpoilerPointYn=N'
+review_url_form = 'https://movie.naver.com/movie/bi/mi/pointWriteFormList.nhn?code={}&order=newest&page={}&onlySpoilerPointYn={}'
 
 
 def calc_max_page(movie_id, end_page):
@@ -10,7 +10,7 @@ def calc_max_page(movie_id, end_page):
     return max_page if max_page > 0 else False
 
 
-def get_review_data(movie_id, start_page=1, end_page=-1):
+def get_review_data(movie_id, start_page=1, end_page=-1, spoiler='Y'):
     max_page = calc_max_page(movie_id, end_page)
 
     if max_page == False:
@@ -18,7 +18,7 @@ def get_review_data(movie_id, start_page=1, end_page=-1):
 
     comments = []
     for page in trange(start_page, max_page + 1):
-        url = review_url_form.format(movie_id, page)
+        url = review_url_form.format(movie_id, page, spoiler)
         current_page_comments = get_a_page(get_soup(url))
         comments += current_page_comments
     return comments

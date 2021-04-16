@@ -5,13 +5,14 @@ from .util import get_soup
 review_url_form = 'https://movie.naver.com/movie/bi/mi/pointWriteFormList.nhn?code={}&order=newest&page={}&onlySpoilerPointYn={}'
 
 
-def calc_max_page(movie_id, end_page):
-    max_page = min(end_page, get_max_page(movie_id, spoiler))
+def calc_max_page(url):
+    max_page = min(end_page, get_max_page(url))
     return max_page if max_page > 0 else False
 
 
 def get_review_data(movie_id, start_page=1, end_page=-1, spoiler='Y'):
-    max_page = calc_max_page(movie_id, end_page)
+    url = review_url_form.format(movie_id, page, spoiler)
+    max_page = calc_max_page(url)
 
     if max_page == False:
         return "Failed: please check end_page"
@@ -48,8 +49,7 @@ def get_a_page(soup):
     return comments
 
 
-def get_max_page(movie_id, spoiler):
-    url = review_url_form.format(movie_id, 1, spoiler)
+def get_max_page(url):
     soup = get_soup(url)
     try:
         num_comments = int(soup.select(

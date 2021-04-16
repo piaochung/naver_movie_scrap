@@ -2,7 +2,7 @@ import math
 from tqdm import trange
 from .util import get_soup
 
-review_url_form = 'https://movie.naver.com/movie/bi/mi/pointWriteFormList.nhn?code={}&order=newest&page={}&onlySpoilerPointYn=N'  # movie_id, type, page
+review_url_form = 'https://movie.naver.com/movie/bi/mi/pointWriteFormList.nhn?code={}&order=newest&page={}&onlySpoilerPointYn=N'
 
 
 def calc_max_page(movie_id, end_page):
@@ -43,7 +43,7 @@ def get_a_page(soup):
                  'user': user_id
                  })
         except Exception as e:
-            print(e)
+            return e
             continue
     return comments
 

@@ -1,4 +1,5 @@
 import re
+from bs4 import BeautifulSoup
 from .util import get_soup, text_normalize
 
 basic_url_form = 'http://movie.naver.com/movie/bi/mi/basic.nhn?code={}'  # movie_id
@@ -28,10 +29,13 @@ def genres(soup):
 
 
 def story(soup):
-    story_soup = BeautifulSoup(str(soup.select("div[class=story_area]")[
-        0]).replace('<br>', '\n').replace('\xa0', '\n'), 'lxml')
-    sentences = story_soup.text.split('\n')
-    sentences = [text_normalize(sentence)
-                 for sentence in sentences if sentence]
-    sentences = [sentence for sentence in sentences if sentence != '줄거리']
-    return '\n'.join(sentences)
+    try:
+        story_soup = BeautifulSoup(str(soup.select("div[class=story_area]")[
+                                   0]).replace('<br>', '\n').replace('\xa0', '\n'), 'lxml')
+        sentences = story_soup.text.split('\n')
+        sentences = [text_normalize(sentence)
+                     for sentence in sentences if sentence]
+        sentences = [sentence for sentence in sentences if sentence != '줄거리']
+        return '\n'.join(sentences)
+    except:
+        return 'error occurred while fetching data'

@@ -6,7 +6,7 @@ review_url_form = 'https://movie.naver.com/movie/bi/mi/pointWriteFormList.nhn?co
 
 
 def calc_max_page(movie_id, end_page):
-    max_page = min(end_page, get_max_page(movie_id))
+    max_page = min(end_page, get_max_page(movie_id, spoiler))
     return max_page if max_page > 0 else False
 
 
@@ -48,8 +48,8 @@ def get_a_page(soup):
     return comments
 
 
-def get_max_page(movie_id):
-    url = review_url_form.format(movie_id, 1)
+def get_max_page(movie_id, spoiler):
+    url = review_url_form.format(movie_id, 1, spoiler)
     soup = get_soup(url)
     try:
         num_comments = int(soup.select(

@@ -1,6 +1,6 @@
 import math
 from tqdm import trange
-from util import get_soup
+from .util import get_soup
 
 review_url_form = 'https://movie.naver.com/movie/bi/mi/pointWriteFormList.nhn?code={}&order=newest&page={}&onlySpoilerPointYn=N'  # movie_id, type, page
 

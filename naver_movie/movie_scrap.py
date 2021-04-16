@@ -1,5 +1,5 @@
 import re
-from util import get_soup, text_normalize
+from .util import get_soup, text_normalize
 
 basic_url_form = 'http://movie.naver.com/movie/bi/mi/basic.nhn?code={}'  # idx
 

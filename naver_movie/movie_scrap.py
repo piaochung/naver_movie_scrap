@@ -4,11 +4,7 @@ from .util import get_soup, text_normalize
 basic_url_form = 'http://movie.naver.com/movie/bi/mi/basic.nhn?code={}'  # movie_id
 
 
-def __init__(self, movie_id):
-    scrap_basic(movie_id)
-
-
-def scrap_basic(movie_id):
+def get_movie_data(movie_id):
     url = basic_url_form.format(movie_id)
     soup = get_soup(url)
     infomation = {
@@ -41,5 +37,4 @@ def story(soup):
         sentences = [sentence for sentence in sentences if sentence != '줄거리']
         return '\n'.join(sentences)
     except:
-        print("error")
         return ''

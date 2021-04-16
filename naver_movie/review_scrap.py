@@ -1,11 +1,15 @@
 import re
 from .util import get_soup, text_normalize
 
-basic_url_form = 'http://movie.naver.com/movie/bi/mi/basic.nhn?code={}'  # idx
+basic_url_form = 'http://movie.naver.com/movie/bi/mi/basic.nhn?code={}'  # movie_id
 
 
-def scrap_basic(idx):
-    url = basic_url_form.format(idx)
+def __init__(self, movie_id):
+    scrap_basic(movie_id)
+
+
+def scrap_basic(movie_id):
+    url = basic_url_form.format(movie_id)
     soup = get_soup(url)
     infomation = {
         'title': title(soup),

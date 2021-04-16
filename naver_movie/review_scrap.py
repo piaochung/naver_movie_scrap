@@ -1,12 +1,8 @@
 import math
 from tqdm import trange
-from .util import get_soup
+from util import get_soup
 
 review_url_form = 'https://movie.naver.com/movie/bi/mi/pointWriteFormList.nhn?code={}&order=newest&page={}&onlySpoilerPointYn=N'  # movie_id, type, page
-
-
-def __init__(self, movie_id, start_page, end_page):
-    get_review_data(movie_id, start_page, end_page)
 
 
 def calc_max_page(movie_id, end_page):
@@ -53,7 +49,7 @@ def get_a_page(soup):
 
 
 def get_max_page(movie_id):
-    url = comments_url_form.format(movie_id, 1)
+    url = review_url_form.format(movie_id, 1)
     soup = get_soup(url)
     try:
         num_comments = int(soup.select(

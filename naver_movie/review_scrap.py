@@ -10,7 +10,7 @@ def calc_max_page(url, end_page):
     return max_page if max_page > 0 else False
 
 
-def get_review_data(movie_id, start_page=1, end_page=-1, spoiler='Y'):
+def get_review_data(movie_id, start_page=1, end_page=-1, spoiler='N'):
     url = review_url_form.format(movie_id, start_page, spoiler)
     max_page = calc_max_page(url, end_page)
 
@@ -25,24 +25,45 @@ def get_review_data(movie_id, start_page=1, end_page=-1, spoiler='Y'):
     return comments
 
 
+def remove_formal_text(text):
+    if text[:4] == '관람객\n':
+        return text[4:].strip()
+    if text[:25] == '스포일러가 포함된 감상평입니다. 감상평 보기\n':
+        return text[25:].strip()
+
+
+def get_score(row):
+    score = int(row.select('div[class=star_score] em')[0].text.strip())
+    return score
+
+
+def get_text(row):
+    text = row.select('div[class=score_reple] p')[0].text.strip()
+    return text
+
+
+def get_user_id(row):
+    user_id = row.select('div[class=score_reple] em')[0].text.strip()
+    return user_id
+
+
+def return_comment_form(score, text, user_id):
+    comment = {'score': score,
+               'text': text,
+               'user': user_id
+               }
+    return comment
+
+
 def get_a_page(soup):
     comments = []
     for row in soup.select('div[class=score_result] li'):
         try:
-            score = int(row.select('div[class=star_score] em')[0].text.strip())
-            text = row.select('div[class=score_reple] p')[0].text.strip()
-
-            if text[:4] == '관람객\n':
-                text = text[4:].strip()
-            if text[:25] == '스포일러가 포함된 감상평입니다. 감상평 보기\n':
-                text = text[25:].strip()
-
-            user_id = row.select('div[class=score_reple] em')[0].text.strip()
-            comments.append(
-                {'score': score,
-                 'text': text,
-                 'user': user_id
-                 })
+            score = get_score(row)
+            text = get_text(row)
+            user_id = get_user_id(row)
+            text = remove_formal_text(text)
+            comments.append(return_comment_form(score, text, user_id))
         except Exception as e:
             return e
             continue

@@ -18,17 +18,16 @@ git clone https://github.com/piaochung/naver_movie_scrap.git
 ```
 가장 먼저 git clone을 실행시켜줍니다.
 
+|인자|내용|타입|
+|-|-|-|
+|movie_id|영화 고유 아이디입니다.|int|
+
 ```
 from naver_movie import movie_scrap
 
 movie_id = 132626
 movie_data = movie_scrap.get_movie_data(movie_id)
 ```
-
-|인자|내용|타입|
-|-|-|-|
-|movie_id|영화 고유 아이디입니다.|int|
-
 
 naver_movie 폴더에 있는 movie_scrap.py 파일을 가져와줍니다. movie_scrap의 경우에는 인자로 movie_id만을 가지기 때문에 movie_id값을 지정해서 넣어줍니다.
 
@@ -43,6 +42,13 @@ naver_movie 폴더에 있는 movie_scrap.py 파일을 가져와줍니다. movie_
  ### review_scrap 사용 방법
  ---
  
+ |인자|내용|타입|
+|-|-|-|
+|movie_id|영화 고유 아이디입니다.|int|
+|start_page|시작 페이지를 지정하는 변수입니다.|int|
+|end_page|끝나는 페이지를 지정하는 변수입니다.|int|
+|spoiler|스포일러 포함 리뷰를 볼지 결정하는 변수입니다.|str|
+ 
  ```
 from naver_movie import review_scrap
 
@@ -50,12 +56,7 @@ movie_id = 132626
 review_data = review_scrap.get_review_data(movie_id, start_page=1, end_page=50, spoiler='N')
 ```
 
-|인자|내용|타입|
-|-|-|-|
-|movie_id|영화 고유 아이디입니다.|int|
-|start_page|시작 페이지를 지정하는 변수입니다.|int|
-|end_page|끝나는 페이지를 지정하는 변수입니다.|int|
-|spoiler|스포일러 포함 리뷰를 볼지 결정하는 변수입니다.|str|
+위의 코드는 1~50페이지까지의 리뷰 데이터를 가져오는 코드입니다.
  
  ```
  {'score': 10, 'text': '다시 봐도 재밌는 영화.미니언은 너무 귀엽고', 'user': '1'},

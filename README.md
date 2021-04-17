@@ -14,6 +14,11 @@
 ---
 
 ```
+git clone https://github.com/piaochung/naver_movie_scrap.git
+```
+가장 먼저 git clone을 실행시켜줍니다.
+
+```
 from naver_movie import movie_scrap
 
 movie_id = 132626

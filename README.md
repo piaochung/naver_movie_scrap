@@ -1,18 +1,14 @@
 ## naver_movie_scrap
----
-
 네이버 영화 리뷰 데이터와 영화 데이터를 가져오는 프로그램입니다.
 
-### 파일 목록
+## 파일 목록
 |이름|내용|
 |-|-|
 |movie_scrap.py|영화 제목, 줄거리, 장르를 가져옵니다.|
 |review_scrap.py|평점, 리뷰, 유저 아이디를 가져옵니다.|
 |util.py|모듈 파일입니다.|
 
-### movie_scrap 사용 방법
----
-
+## movie_scrap 사용 방법
 ```
 git clone https://github.com/piaochung/naver_movie_scrap.git
 ```
@@ -39,10 +35,8 @@ naver_movie 폴더에 있는 movie_scrap.py 파일을 가져와줍니다. movie_
  
  가져온 데이터를 확인하면 위와 같습니다.
  
- ### review_scrap 사용 방법
- ---
- 
- |인자|내용|타입|
+ ## review_scrap 사용 방법
+|인자|내용|타입|
 |-|-|-|
 |movie_id|영화 고유 아이디입니다.|int|
 |start_page|시작 페이지를 지정하는 변수입니다.|int|
@@ -74,3 +68,9 @@ review_data = review_scrap.get_review_data(movie_id, start_page=1, end_page=50, 
  ```
  
  실제로 작동시킬 때에는 user가 숫자로 표현되지 않고 아이디나 닉네임이 표현됩니다.
+
+## Dependency
+- python3
+- BeautifulSoup
+- urllib.request
+- trange

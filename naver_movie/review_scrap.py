@@ -28,8 +28,7 @@ def get_review_data(movie_id, start_page=1, end_page=-1, spoiler='N'):
 def remove_formal_text(text):
     if text[:4] == '관람객\n':
         return text[4:].strip()
-    if text[:25] == '스포일러가 포함된 감상평입니다. 감상평 보기\n':
-        return text[25:].strip()
+    return text
 
 
 def get_score(row):

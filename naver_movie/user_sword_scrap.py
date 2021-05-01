@@ -1,4 +1,5 @@
 import re
+import math
 from tqdm import trange
 from bs4 import BeautifulSoup
 from .util import get_soup, text_normalize, clean_text
@@ -23,7 +24,7 @@ def get_max_page(url):
         return -1
 
 
-def get_user_code(movie_id, start_page, end_page):
+def get_user_code(movie_id, start_page=1, end_page=-1):
     url = review_url_form.format(movie_id, start_page)
     max_page = calc_max_page(url, end_page)
 

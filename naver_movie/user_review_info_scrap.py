@@ -76,7 +76,7 @@ def get_score(row):
 
 def get_text(row):
     text = row.select('td[class="title"]')[0].text.strip()
-    return text.split('\n')[4]
+    return text.split('\n')[-1]
 
 
 def get_movie_id(row):

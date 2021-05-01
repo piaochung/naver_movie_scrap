@@ -76,7 +76,7 @@ review_data = review_scrap.get_review_data(movie_id, start_page=1, end_page=50, 
  실제로 작동시킬 때에는 user가 숫자로 표현되지 않고 아이디나 닉네임이 표현됩니다.
 
 ## user_sword_scrap 사용 방법
-#### 사용자의 sword를 가져오는 프로그램입니다.
+#### 사용자 고유 번호를 가져오는 프로그램입니다.
 
 |인자|내용|타입|
 |-|-|-|
@@ -107,7 +107,7 @@ user_sword = user_sword_scrap.get_user_code(movie_id, start_page=1, end_page=1)
 1페이지당 10개의 user가 존재합니다.
 
 ## user_review_info_scarp 사용
-#### 사용자의 sword에 따른 리뷰 데이터를 가져오는 프로그램입니다.
+#### 사용자 고유 번호에 따른 리뷰 데이터를 가져오는 프로그램입니다.
 
 |인자|내용|타입|
 |-|-|-|

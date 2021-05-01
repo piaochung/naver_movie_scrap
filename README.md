@@ -35,7 +35,7 @@ naver_movie 폴더에 있는 movie_scrap.py 파일을 가져와줍니다. movie_
  
  가져온 데이터를 확인하면 위와 같습니다.
  
- ## review_scrap 사용 방법
+## review_scrap 사용 방법
 |인자|내용|타입|
 |-|-|-|
 |movie_id|영화 고유 아이디입니다.|int|
@@ -69,8 +69,13 @@ review_data = review_scrap.get_review_data(movie_id, start_page=1, end_page=50, 
  
  실제로 작동시킬 때에는 user가 숫자로 표현되지 않고 아이디나 닉네임이 표현됩니다.
 
+## user_sword_scrap 사용 방법
+
+## user_review_info_scarp 사용 
+
 ## Dependency
 - python3
 - BeautifulSoup
 - urllib.request
 - trange
+- re

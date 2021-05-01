@@ -32,7 +32,7 @@ def get_user_code(movie_id, start_page=1, end_page=-1):
         return "Failed: please check end_page"
 
     comments = []
-    for page in trange(start_page, end_page+1):
+    for page in trange(start_page, max_page+1):
         url = review_url_form.format(movie_id, page)
         current_page_comments = get_a_page(get_soup(url))
         comments += (current_page_comments)

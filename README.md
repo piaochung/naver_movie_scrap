@@ -5,7 +5,9 @@
 |이름|내용|
 |-|-|
 |movie_scrap.py|영화 제목, 줄거리, 장르를 가져옵니다.|
-|review_scrap.py|평점, 리뷰, 유저 아이디를 가져옵니다.|
+|review_scrap.py|평점, 리뷰, 사용자 아이디를 가져옵니다.|
+|user_review_info_scrap.py|번호, 영화 제목, 영화 아이디, 점수, 리뷰, 사용자 고유 번호, 사용자 아이디|
+|user_sword_scrap.py|사용자 고유 번호를 가져옵니다.|
 |util.py|모듈 파일입니다.|
 
 ## movie_scrap 사용 방법

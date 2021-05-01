@@ -7,23 +7,23 @@ from .util import get_soup, text_normalize, clean_text
 target_url = "https://movie.naver.com/movie/point/af/list.nhn?st=nickname&target=after&sword={}&page={}"
 
 
-def get_user_review(sword, mininum_count, start_page, end_page=-1):
+def get_user_review(sword, mininum_count):
     comments = []
-    url = target_url.format(sword, end_page)
-    total_review_count = calc_page(url)
+    url = target_url.format(sword, 1)
+    total_review_page = calc_page(url)
 
-    if total_review_count > mininum_count:
-        for page in trange(start_page, total_review_count+1):
+    if total_review_page > math.ceil(mininum_count/10):
+        for page in trange(1, total_review_page+1):
             url = target_url.format(sword, page)
             current_page_comments = get_a_page(get_soup(url))
             comments += current_page_comments
-            return comments
+        return comments
 
 
 def calc_page(url):
     total_review_count = is_useful_user(get_soup(url))
     page = math.ceil(total_review_count / 10)
-    return total_review_count
+    return page
 
 
 def is_useful_user(soup):

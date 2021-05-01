@@ -15,7 +15,7 @@ def get_user_review(sword, mininum_count):
     if total_review_page > math.ceil(mininum_count/10):
         for page in trange(1, total_review_page+1):
             url = target_url.format(sword, page)
-            current_page_comments = get_a_page(get_soup(url))
+            current_page_comments = get_a_page(get_soup(url), sword)
             comments += current_page_comments
         return comments
 
@@ -32,19 +32,20 @@ def is_useful_user(soup):
     return int(user_review_count)
 
 
-def return_comment_form(user_number, movie_title, movie_id, score, text, user_name):
+def return_comment_form(user_number, movie_title, movie_id, score, text, sword, user_name):
     comment = {
         'user_number': user_number,
         'movie_title': movie_title,
         'movie_id': movie_id,
         'score': score,
         'text': text,
+        'sword': sword,
         'user_name': user_name
     }
     return comment
 
 
-def get_a_page(soup):
+def get_a_page(soup, sword):
     comments = []
     for row in soup.select('table[class="list_netizen"] tbody tr'):
         user_number = get_user_number(row)
@@ -54,7 +55,7 @@ def get_a_page(soup):
         text = get_text(row)
         user_name = get_user_name(row)
         comments.append(return_comment_form(
-            user_number, movie_title, movie_id, score, text, user_name))
+            user_number, movie_title, movie_id, score, text, sword, user_name))
     return comments
 
 

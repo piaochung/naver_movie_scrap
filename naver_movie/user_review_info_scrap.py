@@ -2,19 +2,20 @@ import re
 import math
 from tqdm import trange
 from bs4 import BeautifulSoup
-from .util import get_soup, text_normalize, clean_text
+from .util import get_soup, clean_text
 
 # 17488876 191개의 리뷰를 가지고 있다.
 target_url = "https://movie.naver.com/movie/point/af/list.nhn?st=nickname&target=after&sword={}&page={}"
 
 
-def get_user_review(sword, mininum_count):
+def get_user_review(sword, mininum_count, maximum_count):
     comments = []
     url = target_url.format(sword, 1)
     total_review_page = calc_page(url)
 
     if total_review_page > math.ceil(mininum_count/10):
-        for page in trange(1, total_review_page+1):
+        pages = min(maximum_count, total_review_page)
+        for page in trange(1, pages+1):
             url = target_url.format(sword, page)
             current_page_comments = get_a_page(get_soup(url), sword)
             comments += current_page_comments

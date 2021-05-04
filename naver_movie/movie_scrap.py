@@ -9,6 +9,7 @@ def get_movie_data(movie_id):
     url = basic_url_form.format(movie_id)
     soup = get_soup(url)
     infomation = {
+        'movie_id': movie_id,
         'title': get_title(soup),
         'genres': get_genres(soup),
         'story': get_story(soup)

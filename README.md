@@ -155,6 +155,6 @@ user_sword = user_review_info_scrap.get_user_review(17471693, 10)
 ## Dependency
 - python3
 - BeautifulSoup
-- urllib.request
+- request
 - trange
 - re

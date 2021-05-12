@@ -156,5 +156,5 @@ user_sword = user_review_info_scrap.get_user_review(17471693, 10)
 - python3
 - BeautifulSoup
 - request
-- trange
+- tqbm
 - re

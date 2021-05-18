@@ -112,16 +112,16 @@ user_sword = user_sword_scrap.get_user_code(movie_id, start_page=1, end_page=1)
 |인자|내용|타입|
 |-|-|-|
 |sword|사용자 고유 아이디입니다.|int|
-|mininum_count|스크랩하기 위한 최소한의 리뷰 개수입니다.|int|
+|minimum_count|스크랩하기 위한 최소한의 리뷰 개수입니다.|int|
+|maximum_count|리뷰 개수의 최대값을 지정합니다.|int|
 
 ```
 from naver_movie import user_review_info_scrap
 
-movie_id = 93756
-user_sword = user_review_info_scrap.get_user_review(17471693, 10)
+user_sword = user_review_info_scrap.get_user_review(17471693, 10, 50)
 ```
 
-사용자 17471693이 10개 이상의 리뷰를 작성하였다면 리뷰 데이터를 가져오는 코드입니다.
+사용자 17471693이 10개 이상의 리뷰를 작성하였다면 50개의 리뷰 데이터를 가져오는 코드입니다.
 
 ```
 [{'movie_id': '93756',
